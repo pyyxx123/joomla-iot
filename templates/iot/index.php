@@ -27,6 +27,9 @@ tplIotHelper::setMetadata();
 </head>
 <body class="<?php echo tplIotHelper::setBodySuffix(); ?>">
 
+<?php if ($this->params->get('sitedescription')) : ?>
+    <?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription'), ENT_COMPAT, 'UTF-8') . '</div>'; ?>
+<?php endif; ?>
 
 <nav role="navigation" >
 	<jdoc:include type="modules" name="position-0" style="none" />

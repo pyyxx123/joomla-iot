@@ -5,8 +5,8 @@
     <creationDate>2018/12/10</creationDate>
     <author>姚信选</author>
     <authorEmail>pyyxx1234@qq.com</authorEmail>
-    <copyright>澜创科技 copyright 2018 </copyright>
-    <description>澜创科技物联网平台官方站点</description>
+    <copyright>Copyright (C)  2018 - 2020 澜创科技.  All rights reserved. </copyright>
+    <description>TPL_IOT_XML_DESCRIPTION</description>
 
     <files>
         <filename>component.php</filename>
