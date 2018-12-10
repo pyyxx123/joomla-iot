@@ -2,10 +2,10 @@
 /**
  * @package    iot
  *
- * @author     huludawang <your@email.com>
- * @copyright  A copyright
+ * @author     姚信选 <pyyxx1234@qq.com>
+ * @copyright  澜创科技 copyright 2018
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * @link       http://your.url.com
+ * @link       http://iot.lantrue.net
  */
 
 defined('_JEXEC') or die;
@@ -26,15 +26,7 @@ tplIotHelper::setMetadata();
 	<jdoc:include type="head" />
 </head>
 <body class="<?php echo tplIotHelper::setBodySuffix(); ?>">
-<?php echo tplIotHelper::setAnalytics(0, 'your-analytics-id'); ?>
 
-<a href="#main" class="sr-only sr-only-focusable"><?php echo Text::_('TPL_IOT_SKIP_LINK_LABEL'); ?></a>
-
-<a href="<?php echo $this->baseurl; ?>/">
-    <?php if ($this->params->get('sitedescription')) : ?>
-        <?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription'), ENT_COMPAT, 'UTF-8') . '</div>'; ?>
-    <?php endif; ?>
-</a>
 
 <nav role="navigation" >
 	<jdoc:include type="modules" name="position-0" style="none" />
@@ -45,18 +37,14 @@ tplIotHelper::setMetadata();
 	<jdoc:include type="component" />
 </main>
 
-<aside>
-    <?php if ($this->countModules('position-1')) : ?>
-		<jdoc:include type="modules" name="position-1" style="none" />
-	<?php endif; ?>
-</aside>
 
-<iotter>
-	<jdoc:include type="modules" name="iotter" style="none" />
+<footer>
+	<jdoc:include type="modules" name="footer" style="none" />
 	<p>
 		&copy; <?php echo date('Y'); ?> <?php echo tplIotHelper::getSitename(); ?>
 	</p>
-</iotter>
+</footer>
+
 <jdoc:include type="modules" name="debug" style="none" />
 </body>
 </html>
