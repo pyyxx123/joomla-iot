@@ -14,22 +14,21 @@ use \Joomla\CMS\Factory;
 use \Joomla\CMS\Language\Text;
 
 require_once JPATH_THEMES . '/' . $this->template . '/helper.php';
-
+tplIotHelper::initJsAndCss();
 tplIotHelper::loadCss();
 tplIotHelper::loadJs();
 tplIotHelper::setMetadata();
-
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
 	<jdoc:include type="head" />
-</head>
-<body class="<?php echo tplIotHelper::setBodySuffix(); ?>">
 
-<?php if ($this->params->get('sitedescription')) : ?>
-    <?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription'), ENT_COMPAT, 'UTF-8') . '</div>'; ?>
-<?php endif; ?>
+
+</head>
+<!--<div><?php echo tplIotHelper::setBodySuffix(); ?></div>-->
+<body>
+
 
 <nav role="navigation" >
 	<jdoc:include type="modules" name="position-0" style="none" />
@@ -49,5 +48,6 @@ tplIotHelper::setMetadata();
 </footer>
 
 <jdoc:include type="modules" name="debug" style="none" />
+
 </body>
 </html>

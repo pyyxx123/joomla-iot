@@ -18,6 +18,7 @@
         <filename>template_thumbnail.png</filename>
         <filename>favicon.ico</filename>
         <folder>css</folder>
+        <folder>bootstrap-4.1.3</folder>
         <folder>html</folder>
         <folder>images</folder>
         <folder>js</folder>

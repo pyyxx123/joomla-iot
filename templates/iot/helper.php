@@ -22,252 +22,145 @@ use \Joomla\CMS\Uri\Uri;
  */
 class tplIotHelper
 {
-	static public function template()
-	{
-		return Factory::getApplication()->getTemplate();
-	}
+    static public function template()
+    {
+        return Factory::getApplication()->getTemplate();
+    }
 
-	/**
-	 * Method to get current Page Option
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return mixed
-	 * @since 1.0
-	 */
-	static public function getPageOption()
-	{
-		//return str_replace('_', '-', Factory::getApplication()->input->getCmd('option', ''));
-		return Factory::getApplication()->input->getCmd('option', '');
-	}
+    static public function getPageOption()
+    {
+        //return str_replace('_', '-', Factory::getApplication()->input->getCmd('option', ''));
+        return Factory::getApplication()->input->getCmd('option', '');
+    }
 
-	/**
-	 * Method to get current Page View
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return mixed
-	 * @since 1.0
-	 */
-	static public function getPageView()
-	{
-		return Factory::getApplication()->input->getCmd('view', '');
-	}
 
-	/**
-	 * Method to get current Page Layout
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return mixed
-	 * @since version
-	 */
-	static public function getPageLayout()
-	{
-		return Factory::getApplication()->input->getCmd('layout', '');
-	}
+    static public function getPageView()
+    {
+        return Factory::getApplication()->input->getCmd('view', '');
+    }
 
-	/**
-	 * Method to get current Page Task
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return mixed
-	 * @since 1.0
-	 */
-	static public function getPageTask()
-	{
-		return Factory::getApplication()->input->getCmd('task', '');
-	}
+    static public function getPageLayout()
+    {
+        return Factory::getApplication()->input->getCmd('layout', '');
+    }
 
-	/**
-	 * Method to get the current Menu Item ID
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return int
-	 * @since 1.0
-	 */
-	static public function getItemId()
-	{
-		return Factory::getApplication()->input->getInt('Itemid');
-	}
 
-	/**
-	 * Method to get PageClass set with Menu Item
-	 *
-	 * @return mixed
-	 * @since  1.0
-	 */
-	static public function getPageClass()
-	{
-		$activeMenu = Factory::getApplication()->getMenu()->getActive();
-		$pageclass  = ($activeMenu) ? $activeMenu->params->get('pageclass_sfx', '') : '';
+    static public function getPageTask()
+    {
+        return Factory::getApplication()->input->getCmd('task', '');
+    }
 
-		return $pageclass;
-	}
 
-	/**
-	 * Method to determine whether the current page is the Joomla! homepage
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return bool
-	 * @since  1.0
-	 */
-	static public function isHome()
-	{
-		// Fetch the active menu-item
-		$activeMenu = Factory::getApplication()->getMenu()->getActive();
+    static public function getItemId()
+    {
+        return Factory::getApplication()->input->getInt('Itemid');
+    }
 
-		// Return whether this active menu-item is home or not
-		return (boolean) ($activeMenu) ? $activeMenu->home : false;
-	}
 
-	/**
-	 * Method to fetch the current path
-	 *
-	 * @access public
-	 *
-	 * @param string $output Output type
-	 *
-	 * @return mixed
-	 * @since  1.0
-	 */
-	static public function getPath($output = 'array')
-	{
-		$path = Uri::getInstance()->getPath();
-		$path = preg_replace('/^\//', '', $path);
-		if ($output == 'array')
-		{
-			$path = explode('/', $path);
+    static public function getPageClass()
+    {
+        $activeMenu = Factory::getApplication()->getMenu()->getActive();
+        $pageclass = ($activeMenu) ? $activeMenu->params->get('pageclass_sfx', '') : '';
 
-			return $path;
-		}
+        return $pageclass;
+    }
 
-		return $path;
-	}
 
-	/**
-	 * Generate a list of useful CSS classes for the body
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return bool
-	 * @since  1.0
-	 */
-	static public function setBodySuffix()
-	{
-		$classes   = array();
-		$classes[] = 'option-' . self::getPageOption();
-		$classes[] = 'view-' . self::getPageView();
-		$classes[] = self::getPageLayout() ? 'layout-' . self::getPageLayout() : 'no-layout';
-		$classes[] = self::getPageTask() ? 'task-' . self::getPageTask() : 'no-task';
-		$classes[] = 'itemid-' . self::getItemId();
-		$classes[] = self::getPageClass();
-		$classes[] = self::isHome() ? 'path-home' : 'path-' . implode('-', self::getPath('array'));
+    static public function isHome()
+    {
+        // Fetch the active menu-item
+        $activeMenu = Factory::getApplication()->getMenu()->getActive();
 
-		return implode(' ', $classes);
-	}
+        // Return whether this active menu-item is home or not
+        return (boolean)($activeMenu) ? $activeMenu->home : false;
+    }
 
-	/**
-	 * Method to manually override the META-generator
-	 *
-	 * @access public
-	 *
-	 * @param string $generator
-	 *
-	 * @return null
-	 *
-	 * @since  1.0
-	 */
-	static public function setGenerator($generator)
-	{
-		Factory::getDocument()->setGenerator($generator);
-	}
+    static public function getPath($output = 'array')
+    {
+        $path = Uri::getInstance()->getPath();
+        $path = preg_replace('/^\//', '', $path);
+        if ($output == 'array') {
+            $path = explode('/', $path);
 
-	/**
-	 * Method to get the current sitename
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return string
-	 * @since  1.0
-	 */
-	static public function getSitename()
-	{
-		return Factory::getConfig()->get('sitename');
-	}
+            return $path;
+        }
 
-	/**
-     * Method to set some Meta data
-     *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @return null
-	 * @since  1.0
-    */
-	static public function setMetadata()
-	{
-		$doc    = Factory::getDocument();
+        return $path;
+    }
 
-		$doc->setHtml5(true);
-		$doc->setMetaData('X-UA-Compatible', 'IE=edge', true);
-		$doc->setMetaData('viewport', 'width=device-width, initial-scale=1.0');
-		self::setGenerator(self::getSitename());
-	}
 
-	/**
-	 * Method to load CSS
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @since  1.0
-	 */
-	static public function loadCss()
-	{
-		HTMLHelper::_('stylesheet', 'template.css', ['version' => 'auto', 'relative' => true]);
+    static public function setBodySuffix()
+    {
+        $classes = array();
+        $classes[] = 'option-' . self::getPageOption();
+        $classes[] = 'view-' . self::getPageView();
+        $classes[] = self::getPageLayout() ? 'layout-' . self::getPageLayout() : 'no-layout';
+        $classes[] = self::getPageTask() ? 'task-' . self::getPageTask() : 'no-task';
+        $classes[] = 'itemid-' . self::getItemId();
+        $classes[] = self::getPageClass();
+        $classes[] = self::isHome() ? 'path-home' : 'path-' . implode('-', self::getPath('array'));
 
-		// Check for a custom CSS file
-		$userCss = JPATH_SITE . '/templates/' . self::template() . '/css/user.css';
+        return implode(' ', $classes);
+    }
 
-		if (file_exists($userCss) && filesize($userCss) > 0)
-		{
-			HTMLHelper::_('stylesheet', 'user.css', ['version' => 'auto', 'relative' => true]);
-		}
-	}
+    static public function setGenerator($generator)
+    {
+        Factory::getDocument()->setGenerator($generator);
+    }
 
-	/**
-	 * Method to load JS
-	 *
-	 * @access public
-	 *
-	 * @param null
-	 *
-	 * @since  1.0
-	 */
-	static public function loadJs()
-	{
-		HTMLHelper::_('script', 'template.js', ['version' => 'auto', 'relative' => true]);
-	}
+
+    static public function getSitename()
+    {
+        return Factory::getConfig()->get('sitename');
+    }
+
+
+    static public function setMetadata()
+    {
+        $doc = Factory::getDocument();
+
+        $doc->setHtml5(true);
+        $doc->setMetaData('X-UA-Compatible', 'IE=edge', true);
+        $doc->setMetaData('viewport', 'width=device-width, initial-scale=1.0');
+        self::setGenerator(self::getSitename());
+    }
+
+
+    static public function loadCss()
+    {
+        JHtml::_('stylesheet', 'templates/' . self::template() . '/bootstrap-4.1.3/css/bootstrap.css', array('version' => 'auto'));
+
+        // Check for a custom CSS file
+        $userCss = JPATH_SITE . '/templates/' . self::template() . '/css/user.css';
+        if (file_exists($userCss) && filesize($userCss) > 0) {
+            JHtml::_('stylesheet', 'user.css', ['version' => 'auto', 'relative' => true]);
+        }
+
+    }
+
+
+    static public function loadJs()
+    {
+        JHtml::_('script', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', ['version' => 'auto']);
+        JHtml::_('script', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', ['version' => 'auto']);
+        JHtml::_('script', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', ['version' => 'auto']);
+        JHtml::_('script', 'template.js', ['version' => 'auto', 'relative' => true]);
+    }
+
+    /**
+     * 模版使用自己的js和css样式
+     * 因此首先初始化系统默认的js和css
+     * @author 姚信选
+     * @since 1.0
+     */
+    static public function initJsAndCss()
+    {
+        $document = Factory::getDocument();
+        unset($document->_script);
+        unset($document->_scripts["/media/jui/js/jquery.min.js"]);
+        unset($document->_scripts["/media/jui/js/jquery-noconflict.js"]);
+        unset($document->_scripts["/media/jui/js/jquery-migrate.min.js"]);
+        unset($document->_scripts["/media/system/js/caption.js"]);
+    }
+
 }
