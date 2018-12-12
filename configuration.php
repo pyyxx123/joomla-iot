@@ -4,7 +4,7 @@ class JConfig {
 	public $offline_message = '网站正在维护。<br /> 请稍候访问。';
 	public $display_offline_message = '1';
 	public $offline_image = '';
-	public $sitename = '澜创科技物联网平台-Lantrue IoT Platform';
+	public $sitename = '澜创科技物联网平台';
 	public $editor = 'tinymce';
 	public $captcha = '0';
 	public $list_limit = '20';
@@ -41,7 +41,7 @@ class JConfig {
 	public $smtphost = 'localhost';
 	public $smtpsecure = 'none';
 	public $smtpport = '25';
-	public $caching = '1';
+	public $caching = '0';
 	public $cache_handler = 'file';
 	public $cachetime = '15';
 	public $cache_platformprefix = '0';
