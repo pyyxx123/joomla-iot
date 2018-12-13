@@ -29,21 +29,23 @@ $results = $dispatcher->trigger('onContentAfterDisplay', array($this->category->
 $afterDisplayContent = trim(implode("\n", $results));
 
 ?>
-<div>
-    <article class="post post-with-tags">
-        <header class="post-title"><a href="/binlog_dw.html">美团DB数据同步到数据仓库的架构与实践</a></header>
 
-        <div class="post-meta"><span class="post-meta-author">萌萌 心序 成聪</span><span class="post-meta-ctime">2018-12-06</span>
-        </div>
-        <p class="post-abstract">
-            DB数据是大数据场景下进行数据分析与挖掘的重要数据来源，是ODS层数据的重要构成部分。本文主要从Binlog流式采集和基于Hive的ODS数据生产两方...</p>
-        <footer class="post-tags"><a class="tag" href="/tag/后台"><span class="tag_name">后台</span></a><a
-                    class="tag" href="/tag/基础研发平台"><span class="tag_name">基础研发平台</span></a><a class="tag"
-                                                                                              href="/tag/Binlog"><span
-                        class="tag_name">Binlog</span></a><a class="tag" href="/tag/ODS"><span
-                        class="tag_name">ODS</span></a><a class="tag" href="/tag/数据仓库"><span
-                        class="tag_name">数据仓库</span></a></footer>
-    </article>
+
+<div class="main">
+    <div class="tag_header"><span>最新文章</span>
+        <form action="//google.com/search" class="search" method="get" target="_blank">
+            <div class="search_box"><input class="search_input" name="q" type="text">
+                <input name="q" type="hidden" value="site:tech.meituan.com">
+                <input name="gw_rd" type="hidden" value="cr">
+                <input id="search_submit" type="submit">
+                <label for="search_submit"></label>
+            </div>
+        </form>
+    </div>
+    <section class="post-list">
+
+<div>
+
 
 	<?php if ($this->params->get('show_page_heading')) : ?>
 		<div class="page-header">
@@ -89,18 +91,15 @@ $afterDisplayContent = trim(implode("\n", $results));
 
 	<?php $leadingcount = 0; ?>
 	<?php if (!empty($this->lead_items)) : ?>
-		<div class="items-leading clearfix">
 			<?php foreach ($this->lead_items as &$item) : ?>
-				<div class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
-					itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-					<?php
+    <article class="post post-with-tags">
+    <?php
 					$this->item = &$item;
 					echo $this->loadTemplate('item');
 					?>
-				</div>
+    </article>
 				<?php $leadingcount++; ?>
 			<?php endforeach; ?>
-		</div><!-- end items-leading -->
 	<?php endif; ?>
 
 	<?php
@@ -110,46 +109,16 @@ $afterDisplayContent = trim(implode("\n", $results));
 
 	<?php if (!empty($this->intro_items)) : ?>
 		<?php foreach ($this->intro_items as $key => &$item) : ?>
-			<?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
-			<?php if ($rowcount === 1) : ?>
-				<?php $row = $counter / $this->columns; ?>
-				<div class="items-row cols-<?php echo (int) $this->columns; ?> <?php echo 'row-' . $row; ?> row-fluid clearfix">
-			<?php endif; ?>
-			<div class="span<?php echo round(12 / $this->columns); ?>">
-				<div class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
-					itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-					<?php
-					$this->item = &$item;
-					echo $this->loadTemplate('item');
-					?>
-				</div>
-				<!-- end item -->
-				<?php $counter++; ?>
-			</div><!-- end span -->
-			<?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
-				</div><!-- end row -->
-			<?php endif; ?>
+            <article class="post post-with-tags">
+                <?php
+                $this->item = &$item;
+                echo $this->loadTemplate('item');
+                ?>
+            </article>
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?php if (!empty($this->link_items)) : ?>
-		<div class="items-more">
-			<?php echo $this->loadTemplate('links'); ?>
-		</div>
-	<?php endif; ?>
-
-	<?php if ($this->maxLevel != 0 && !empty($this->children[$this->category->id])) : ?>
-		<div class="cat-children">
-			<?php if ($this->params->get('show_category_heading_title_text', 1) == 1) : ?>
-				<h3> <?php echo JText::_('JGLOBAL_SUBCATEGORIES'); ?> </h3>
-			<?php endif; ?>
-			<?php echo $this->loadTemplate('children'); ?> </div>
-	<?php endif; ?>
-	<?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-		<div class="pagination">
-			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-				<p class="counter pull-right"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
-			<?php endif; ?>
-			<?php echo $this->pagination->getPagesLinks(); ?> </div>
-	<?php endif; ?>
+</div>
+        <footer class="more"><span class="rectangle"><a class="btn" href="https://tech.meituan.com/?l=40">查看更多</a></span></footer>
+    </section>
 </div>

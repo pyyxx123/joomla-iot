@@ -246,12 +246,12 @@
 .post .post-meta .post-meta-author::after {
     content: '⋅';
     margin: 0 0.08rem; }
-.post .post-abstract {
+.post p {
     line-height: 0.22rem;
     color: #666;
     font-size: 0.14rem; }
 @media (min-width: 768px) {
-    .post .post-abstract {
+    .post p {
         padding: 0.2rem 0; } }
 .post .post-tags {
     display: none;
@@ -297,7 +297,7 @@
     .post-with-tags .post-meta {
         padding: 0.115rem 0 0;
         border-bottom: 0; }
-    .post-with-tags .post-abstract {
+    .post-with-tags p {
         border-bottom: 1px dashed #DDD; }
     .post-with-tags .post-tags {
         display: block; } }
